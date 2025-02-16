@@ -1,5 +1,4 @@
 name: todo-list
-version: latest
 
 services:
   web:

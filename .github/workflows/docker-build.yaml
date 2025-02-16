@@ -7,25 +7,16 @@ on:
   workflow_dispatch:
 
 jobs:
-
-  build_and_publish:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: . 
-          file: docker-compose.prod.yaml
-          push: true
-          tags: sagarvariya4/${{ github.event.repository.name }}:latest
+      - name: Build docker image
+        run: docker compose up -d -f docker-compose.prod.yaml
 
-      # - name: build docker image
-      #   run: docker compose -f docker-compose.prod.yaml up -d
-
-      - name: push image to docker hub
+      - name: Push image to docker hub
         run: |
           docker login -u sagarvariya4 -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push sagarvariya4/${{ github.event.repository.name }}:latest
+          docker push todo-list:latest

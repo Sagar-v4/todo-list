@@ -1,4 +1,13 @@
 {
-  "name": "todo-list-monorepo-docker-compose",
-  "version": "1"
+  "name": "todo-list",
+  "version": "1.0.0",
+  "author": "Sagar Variya",
+  "description": "Simple list of tasks",
+  "scripts": {
+    "update": "git submodule update --init --remote",
+    "docker:up": "docker compose up"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "packageManager": "pnpm@10.2.1"
 }

@@ -1,0 +1,53 @@
+version: "3.7"
+
+name: "todo-list"
+services:
+  web:
+    container_name: web
+    ports:
+      - "3000:3000"
+    build:
+      context: ./apps/todo-list-webapp
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:3001
+    restart: always
+    networks:
+      - app-network
+    depends_on:
+      - server
+  server:
+    container_name: server
+    ports:
+      - "3001:3000"
+    environment:
+      - MONGODB_URI=mongodb://db:27017/todo-list-db?retryWrites=true&w=majority
+    build:
+      context: ./apps/todo-list-server
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - app-network
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: mongo:latest
+    volumes:
+      - type: volume
+        source: mongo-data
+        target: /data/db
+        volume:
+          nocopy: true
+    ports:
+      - "27018:27017"
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

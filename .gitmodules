@@ -1,0 +1,6 @@
+[submodule "apps/todo-list-webapp"]
+	path = apps/todo-list-webapp
+	url = https://github.com/Sagar-v4/todo-list-webapp.git
+[submodule "apps/todo-list-server"]
+	path = apps/todo-list-server
+	url = https://github.com/Sagar-v4/todo-list-server.git

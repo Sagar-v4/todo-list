@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: build docker image
-        run: docker compose -f docker-compose.prod.yaml build -t sagarvariya4/todo-list:latest
+        run: docker compose -f docker-compose.prod.yaml build -p sagarvariya4/todo-list:latest
 
       - name: push image to docker hub
         run: |

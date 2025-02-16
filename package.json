@@ -4,8 +4,12 @@
   "author": "Sagar Variya",
   "description": "Simple list of tasks",
   "scripts": {
-    "update": "git submodule update --init --remote",
-    "docker:up": "docker compose up"
+    "submodule:update": "git submodule init && git submodule update --init --remote --recursive",
+    "submodule:pull": "git submodule init && git submodule update",
+    "docker:build:prod": "docker compose -f docker-compose.prod.yaml up -d --no-start",
+    "docker:build": "docker compose up -d --no-start",
+    "docker:up:prod": "docker compose -f docker-compose.prod.yaml up --build",
+    "docker:up": "docker compose up --build"
   },
   "keywords": [],
   "license": "ISC",

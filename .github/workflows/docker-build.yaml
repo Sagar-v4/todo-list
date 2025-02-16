@@ -4,8 +4,6 @@ on:
   push:
     branches: [master]
 
-  workflow_dispatch:
-
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
@@ -14,8 +12,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: build image
-        run: docker compose -f docker-compose.prod.yaml up -d --no-start sagarvariya4/todo-list:latest
+      - name: build docker image
+        run: docker compose -f docker-compose.prod.yaml up -d --name sagarvariya4/todo-list:latest
 
       - name: push image to docker hub
         run: |

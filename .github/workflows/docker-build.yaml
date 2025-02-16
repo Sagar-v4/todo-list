@@ -20,7 +20,7 @@ jobs:
           context: . 
           file: docker-compose.prod.yaml
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ github.sha }}
+          tags: sagarvariya4/${{ github.event.repository.name }}:latest
 
       # - name: build docker image
       #   run: docker compose -f docker-compose.prod.yaml up -d
@@ -28,4 +28,4 @@ jobs:
       - name: push image to docker hub
         run: |
           docker login -u sagarvariya4 -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ github.sha }}
+          docker push sagarvariya4/${{ github.event.repository.name }}:latest

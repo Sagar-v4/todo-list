@@ -1,4 +1,6 @@
 name: todo-list
+version: latest
+
 services:
   web:
     container_name: web

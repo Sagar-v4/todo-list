@@ -1,8 +1,9 @@
 name: todo-list
 
 services:
-  web:
-    container_name: web
+  todo-list-web:
+    container_name: todo-list-web
+    image: "sagarvariya4/todo-list-web:latest"
     ports:
       - 3000:3000
     build:
@@ -14,9 +15,10 @@ services:
     networks:
       - app-network
     depends_on:
-      - server
-  server:
-    container_name: server
+      - todo-list-server
+  todo-list-server:
+    container_name: todo-list-server
+    image: "sagarvariya4/todo-list-server:latest"
     ports:
       - 3001:3000
     environment:
@@ -28,9 +30,9 @@ services:
     networks:
       - app-network
     depends_on:
-      - db
-  db:
-    container_name: db
+      - todo-list-db
+  todo-list-db:
+    container_name: todo-list-db
     image: mongo:latest
     volumes:
       - type: volume

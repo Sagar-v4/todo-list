@@ -20,4 +20,4 @@ jobs:
       - name: push image to docker hub
         run: |
           docker login -u sagarvariya4 -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push sagarvariya4/todo-list:latest
+          docker push todo-list:latest

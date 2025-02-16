@@ -14,10 +14,18 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: build docker image
-        run: docker compose -f docker-compose.prod.yaml build -p sagarvariya4/todo-list:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: . 
+          file: docker-compose.prod.yaml
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ github.sha }}
+
+      # - name: build docker image
+      #   run: docker compose -f docker-compose.prod.yaml up -d
 
       - name: push image to docker hub
         run: |
           docker login -u sagarvariya4 -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push sagarvariya4/todo-list:latest
+          docker push ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ github.sha }}

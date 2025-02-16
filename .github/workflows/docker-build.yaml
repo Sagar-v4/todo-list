@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build docker image
-        run: docker compose up -d -f docker-compose.prod.yaml
+        run: docker compose -f docker-compose.prod.yaml up -d --no-start
 
       - name: Push image to docker hub
         run: |
